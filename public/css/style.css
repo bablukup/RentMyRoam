@@ -1,7 +1,66 @@
-
-
+/* navbar */
 .navbar {
-    height: 5rem;
-    background-color: white;
+  background-color: #f8f9fa;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
+.navbar-brand {
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+.navbar-brand:hover {
+  color: #0a58ca;
+}
+
+.nav-link {
+  color: #333;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #0d6efd;
+}
+
+
+/* Ensure full-page layout so footer sticks to bottom */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #212529;
+  color: #ffffff;
+  padding: 1.5rem 0;
+  margin-top: auto;
+}
+
+footer a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #0d6efd;
+}
+
+footer .fa-brands {
+  font-size: 1.2rem;
+}
+
+footer .fa-brands:hover {
+  color: #0dcaf0; 
+}

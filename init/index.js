@@ -1,3 +1,4 @@
+// This script resets the listings collection and inserts fresh sample data into the database.
 const mongoose = require("mongoose");
 const initData = require("./data");
 const Listing = require("../models/listing.js");

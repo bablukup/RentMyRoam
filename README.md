@@ -1,6 +1,6 @@
 # 🏠 RentMyRoam
 
-**RentMyRoam** is a full-stack Node.js project inspired by Airbnb. It allows users to create, view, edit, and delete rental property listings with a clean, responsive UI using **Bootstrap 5**.
+**RentMyRoam** is an Airbnb-inspired full-stack Node.js project that allows users to create, view, edit, and delete rental property listings with a clean, responsive UI using Bootstrap 5.
 
 ---
 
@@ -12,50 +12,47 @@
 - 📍 Location & Country support  
 - 📱 Fully Responsive with Bootstrap 5  
 - 🎨 Clean UI and layout using EJS templates  
+- 🌱 Sample data seeding support (via `init` folder)  
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML, CSS, Bootstrap 5, EJS  
-- **Backend**: Node.js, Express.js  
-- **Database**: MongoDB with Mongoose  
-- **Templating Engine**: EJS with ejs-mate  
-- **Version Control**: Git & GitHub  
+- **Frontend:** HTML, CSS, Bootstrap 5, EJS  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB with Mongoose  
+- **Templating Engine:** EJS with ejs-mate  
+- **Version Control:** Git & GitHub  
 
 ---
 
-## 🖥️ Folder Structure
+📁 Folder Structure
+<pre> RentMyRoam/ ├── models/ # Mongoose schema for listings ├── views/ # EJS templates (UI files) │ ├── layouts/ # Page layouts │ ├── includes/ # Reusable UI components │ └── listings/ # All listing-related views ├── public/ # Static files (CSS, JS) ├── utils/ # Reusable error-handling helpers ├── init/ # Sample data and DB seed scripts ├── app.js # Main server file ├── schema.js # Joi validation schema ├── package.json └── .gitignore </pre>
 
-RentMyRoam/
-│
-├── models/ # Mongoose schema
-├── views/ # EJS templates
-│ ├── layouts/
-│ ├── listings/
-│ └── includes/
-├── public/ # CSS & static files
-├── init/ # Sample data
-├── app.js # Entry point
-├── package.json
-└── .gitignore
 
 ---
 
-## 📷 Screenshots
+## 🌱 init/ Folder – Sample Data Setup
 
-_Add screenshot links here in future_
+The `init/` folder is used to populate your MongoDB database with sample listings. It contains:
 
----
+- `data.js`: Contains an array of sample listings  
+- `index.js`: Clears the database and inserts sample data  
+- `devTest.js`: Temporary route-based sample insert (used during development)
 
-## 🧪 How to Run Locally
+You can run the seeding script like this:
 
 ```bash
+node init/index.js
+📷 Screenshots
+(Add screenshots here soon to show homepage, listing card, form UI, etc.)
+
+🧪 How to Run Locally
 git clone https://github.com/bablukup/RentMyRoam.git
 cd RentMyRoam
 npm install
 node app.js
-Visit in browser: (http://localhost:8080/listings)
+Visit in browser: http://localhost:8080/listings
 
 ✨ Future Updates (Coming Soon)
 ✅ User Authentication (Login/Signup)
@@ -66,7 +63,9 @@ Visit in browser: (http://localhost:8080/listings)
 
 ✅ Booking system
 
-🙋‍♂️ Author
+Author
 Bablu Kumar
-📧 Email: [bk596572@gmail.com]
+📧 Email: bk596572@gmail.com
 🔗 GitHub: github.com/bablukup
+
+💡 Have suggestions? I'd love to hear your thoughts and learn from your feedback! Feel free to open issues or DM.

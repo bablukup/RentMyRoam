@@ -19,4 +19,54 @@
         </div>
     </div>
   </div>
+  <!-- REVIEW FORM START -->
+  <div class="card mx-auto mt-4 mb-5" style="max-width: 600px;">
+    <div class="card-body">
+      <h5 class="card-title">Leave a Review</h5>
+      <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          <select name="review[rating]" id="rating" class="form-select" required>
+            <option disabled selected value="">Select rating</option>
+            <option value="1">1 - Poor</option>
+            <option value="2">2 - Fair</option>
+            <option value="3">3 - Good</option>
+            <option value="4">4 - Very good</option>
+            <option value="5">5 - Excellent</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="comment" class="form-label">Comment</label>
+          <textarea name="review[comment]" id="comment" class="form-control" rows="3" placeholder="Write your review..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit Review</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- REVIEW Delete -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+  <% listing.reviews.forEach(review => { %>
+    <div class="card ms-3 mb-3 shadow">
+      <div class="card-body">
+        <h5 class="card-title">
+          <% for(let i = 1; i <= 5; i++) { %>
+            <%= i <= review.rating ? '⭐' : '☆' %>
+          <% } %>
+          <span class="text-muted fs-6">(<%= review.rating %>/5)</span>
+        </h5>
+        <p class="card-text">
+          <%= review.comment %>
+        </p>
+        <p class="card-text">
+          <small class="text-muted">Posted on: <%= review.createdAt.toDateString() %></small>
+        </p>
+        <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+          <BUtton class="btn btn-sm btn-danger">Delete</BUtton>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
 </body>

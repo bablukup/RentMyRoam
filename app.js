@@ -8,6 +8,13 @@ const ejsMate = require("ejs-mate");
 const listingRoutes = require("./routes/listing");
 const reviewRoutes = require("./routes/review");
 const ExpressError = require("./utils/ExpressError");
+const session = require("express-session");
+const flash = require("connect-flash");
+const passport = require("passport");
+const localstrategy = require("passport-local");
+const User = require("./models/user");
+const userRoutes = require("./routes/user");
+
 
 // MongoDB Connection
 const MONGO_URL = "mongodb://127.0.0.1:27017/RentMyRoam";
@@ -30,14 +37,44 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+//Session
+const sessionOptions = {
+    secret: "bablu",
+    resave: false,
+    saveUninitialized: false,
+    cookie:{
+        expire: new Date(Date.now() + 7* 60* 60* 1000),
+        maxAge: 7* 60* 60* 1000,
+        httpOnly: true,
+    }
+};
+
 // Root Route
 app.get("/",(req, res)=> {
     res.send("Hi am root");
 });
 
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localstrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
+    next();
+});
+
 // Mount your modular routers here 👇
 app.use("/listings", listingRoutes);
 app.use("/listings/:id/reviews", reviewRoutes);
+app.use("/", userRoutes);
 
 // Catch-All for Invalid Routes
 app.all(/.*/,(req, res, next) => {

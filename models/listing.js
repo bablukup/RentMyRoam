@@ -18,11 +18,11 @@ const listingSchema = new mongoose.Schema({
         },
         url: {
             type: String,
-            default: "https://cdn.pixabay.com/photo/2025/05/07/19/42/vase-9585892_1280.jpg",
-            set: (v) =>
-                v === ""
-                    ? "https://cdn.pixabay.com/photo/2025/05/07/19/42/vase-9585892_1280.jpg"
-                    : v,
+            // default: "https://cdn.pixabay.com/photo/2025/05/07/19/42/vase-9585892_1280.jpg",
+            // set: (v) =>
+            //     v === ""
+            //         ? "https://cdn.pixabay.com/photo/2025/05/07/19/42/vase-9585892_1280.jpg"
+            //         : v,
         },
     },
     price: {

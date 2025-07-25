@@ -9,6 +9,7 @@ const listingRoutes = require("./routes/listing");
 const reviewRoutes = require("./routes/review");
 const ExpressError = require("./utils/ExpressError");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const localstrategy = require("passport-local");
@@ -17,17 +18,19 @@ const userRoutes = require("./routes/user");
 
 
 // MongoDB Connection
-const MONGO_URL = "mongodb://127.0.0.1:27017/RentMyRoam";
-async function main() {
-    await mongoose.connect(MONGO_URL);
-}
+const dbUrl = process.env.ATLASDB_URL;
+
 main()
-    .then((res)=> {
+    .then(()=> {
     console.log("connection to db");
+    
 })
 .catch((err)=> {
     console.log(err);
 });
+async function main() {
+    await mongoose.connect(dbUrl);
+}
 
 // Middleware Setup
 app.set("view engine", "ejs" );
@@ -37,9 +40,22 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+const store = MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24*3600,
+});
+
+store.on("error", ()=> {
+    console.log("ERROR in Mongo Session Store",err)
+});
+
 //Session
 const sessionOptions = {
-    secret: "bablu",
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie:{

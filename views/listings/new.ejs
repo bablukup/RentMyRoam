@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="card p-4 shadow">
             <h3 class="mb-4">Create a new listing</h3>
-            <form method="POST" action="/listings" novalidate class="needs-validation">
+            <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
 
             <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -19,7 +19,7 @@
 
             <div class="mb-3">
             <label for="image" class="image">image</label>
-            <input name="listing[image][url]" id="image" placeholder="Uplode img link" type="text" class="form-control">
+            <input name="listing[image][url]" id="image" placeholder="Uplode img" type="file" class="form-control" required>
             <div class="valid-feedback">Looks good!</div>
             </div>
 

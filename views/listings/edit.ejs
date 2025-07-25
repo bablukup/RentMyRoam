@@ -5,7 +5,7 @@
   <div class="card shadow p-4">
     <h3 class="mb-4">Edit your listing</h3>
     
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="container mt-4 needs-validation" style="max-width: 600px;" novalidate>
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="container mt-4 needs-validation" style="max-width: 600px;" novalidate enctype="multipart/form-data">
 
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
@@ -20,10 +20,18 @@
       </div>
 
       <div class="mb-3">
-        <label for="image" class="form-label">Image URL</label>
-        <input name="listing[image][url]" id="image" value="<%= listing.image.url %>" type="text" class="form-control" required>
-        <div class="invalid-feedback">Please Enter image URL</div>
+        <label for="image" class="form-label">Image Upload</label>
+        <input name="listing[image][url]" id="image"  type="file" class="form-control">
+        <div class="invalid-feedback">Please Upload image</div>
       </div>
+      
+      <% if (originalImageUrl && originalImageUrl) { %>
+  <div class="mb-3">
+    <label class="form-label">Current Image</label><br>
+    <img src="<%= originalImageUrl%>" alt="Current Image" style="max-width: 200px; border: 1px solid #ccc; padding: 4px;">
+  </div>
+<% } %>
+
 
       <div class="mb-3">
         <label for="price" class="form-label">Price (INR)</label>

@@ -75,3 +75,69 @@ footer .fa-brands:hover {
   box-shadow: 0 2px 8px rgba(70, 130, 180, 0.2);
 }
 
+/* Outer container */
+#filters {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 1rem;
+  gap: 1.2rem;
+  border-bottom: 1px solid #ddd;
+  justify-content: flex-start;
+  align-items: center;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+
+  /* Hide scrollbar (cross-browser) */
+  scrollbar-width: none;         /* Firefox */
+  -ms-overflow-style: none;      /* IE/Edge */
+}
+#filters::-webkit-scrollbar {
+  display: none;
+}
+
+#filters::-webkit-scrollbar {
+  display: none;                 /* Chrome, Safari */
+}
+
+/* Each filter item */
+.filter {
+  flex: 0 0 auto;
+  text-align: center;
+  min-width: 70px;
+  cursor: pointer;
+  color: #222;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.filter i {
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.filter:hover {
+  background-color: #f3f3f3;
+}
+
+/* Tax toggle section */
+.tax-toggle {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  white-space: normal;
+}
+
+.tax-toggle label {
+  font-size: 0.85rem;
+}
+
+.filter:hover {
+  color: #ff5a5f;
+}
